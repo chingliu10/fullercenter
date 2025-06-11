@@ -1,0 +1,47 @@
+<section class="hero">
+    <h1>Help Us Build a Better Uganda</h1>
+    <p>Your donation will help us create sustainable housing solutions and community development projects across Uganda.</p>
+    
+    <div class="total-goal">
+        <h2>Total Fundraising Goal</h2>
+        <div class="amount">{{totalGoal}}</div>
+        <p>Help us reach our target to transform communities</p>
+    </div>
+</section>
+
+<section class="projects" id="projects">
+    <h2>Our Current Projects</h2>
+    
+    <div class="project-grid">
+        {{#each projects}}
+        <div class="project-card">
+            <h3>{{this.title}}</h3>
+            <div class="placeholder-img">
+                [Photo needed: {{this.image}}]
+            </div>
+            <p>{{this.description}}</p>
+            <div class="goal-amount">Goal: {{this.goal}}</div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+<section class="donate-section" id="donate">
+    <h2>Make a Difference Today</h2>
+    <p>Every dollar counts towards building better communities in Uganda</p>
+    
+    <a href="#" class="donate-btn">Donate Now</a>
+    <a href="#" class="donate-btn">Monthly Giving</a>
+    
+    <div style="margin-top: 2rem;">
+        <p><strong>Other Ways to Give:</strong></p>
+        <p>Bank Transfer • Mobile Money • PayPal</p>
+    </div>
+</section>
+
+{{!-- <section class="contact" id="contact">
+    <h2>Get In Touch</h2>
+    <p>Contact us to learn more about our projects or partnership opportunities</p>
+    <p><strong>Email:</strong> info@fullercenteruganda.org</p>
+    <p><strong>Phone:</strong> +256-XXX-XXXXX</p>
+</section> --}}
