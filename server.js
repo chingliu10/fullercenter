@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
       title: 'Decent Homes Hardware Store',
       description: 'Raising seed capital to multiply into building homes for families in need. This store will provide affordable building materials to our community.',
       goal: '$18,500',
-      image: 'hardware-store.jpg'
+      image: '/images/house.png'
     },
     {
       title: 'Fuller Dinner Program',
