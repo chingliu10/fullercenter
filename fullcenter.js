@@ -20,8 +20,13 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: (res, filePath) => {
+    res.setHeader("Cache-Control", "public, max-age=3600, must-revalidate");
+  }
+}));
 
 
 // Routes
@@ -118,7 +123,7 @@ app.get('/donate/:projectId', (req, res) => {
       raised: 5200,
       raisedFormatted: '$5,200',
       percentage: 28,
-      image: 'hardware-store.jpg'
+      image: '/images/decenthomes.jpg'
     },
     {
       id: 2,
@@ -129,7 +134,7 @@ app.get('/donate/:projectId', (req, res) => {
       raised: 2100,
       raisedFormatted: '$2,100',
       percentage: 30,
-      image: 'dinner-program.jpg'
+      image: '/images/diner.jpg'
     },
     {
       id: 3,
@@ -140,7 +145,7 @@ app.get('/donate/:projectId', (req, res) => {
       raised: 750,
       raisedFormatted: '$750',
       percentage: 50,
-      image: 'washing-bay.jpg'
+      image: '/images/washing.jpg'
     },
     {
       id: 4,
@@ -151,7 +156,7 @@ app.get('/donate/:projectId', (req, res) => {
       raised: 900,
       raisedFormatted: '$900',
       percentage: 30,
-      image: 'fitness-gym.jpg'
+      image: '/images/gym.jpg'
     },
     {
       id: 5,
@@ -162,7 +167,7 @@ app.get('/donate/:projectId', (req, res) => {
       raised: 3500,
       raisedFormatted: '$3,500',
       percentage: 18,
-      image: 'uganda-tours.jpg'
+      image: '/images/tours.jpg'
     }
   ];
   
