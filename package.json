@@ -1,7 +1,17 @@
 {
+  "name": "fullercenter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "\"fullcenter.js\"",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node fullcenter.js"
+  },
+  "author": "\"chingliu\"",
+  "license": "ISC",
   "dependencies": {
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.3",
-    "handlebars": "^4.7.8"
+    "express-handlebars": "^7.1.3"
   }
 }

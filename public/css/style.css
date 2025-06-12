@@ -41,6 +41,45 @@ body {
     background: rgba(255,255,255,0.2);
 }
 
+/* Responsive Navigation Styles */
+.nav {
+    background: #1e4080;
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hamburger Menu Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    position: absolute;
+    right: 1rem;
+    top: 0.7rem;
+    cursor: pointer;
+}
+
 .hero {
     background: #f4f4f4;
     padding: 3rem 1rem;
@@ -178,4 +217,441 @@ body {
     border-radius: 5px;
     font-style: italic;
     color: #888;
+}
+
+.placeholder-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.placeholder-img.large {
+    height: 500px;
+    font-size: 1.1rem;
+}
+
+.placeholder-img.large img {
+    object-fit: cover;
+}
+
+/* About Section Styles */
+.about {
+    padding: 3rem 1rem;
+    background: #f9f9f9;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c5aa0;
+    font-size: 2rem;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+    align-items: start;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    text-align: justify;
+}
+
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #e74c3c;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    color: #e74c3c;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .about-stats {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .stat-card {
+        flex: 1;
+        margin: 0 0.5rem;
+    }
+    
+    .stat-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .stat-card p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Progress Bar Styles */
+.progress-container {
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 20px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 50px 50px;
+    animation: move 2s linear infinite;
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+}
+
+.total-goal .progress-text {
+    color: white;
+    font-weight: bold;
+}
+
+/* Project Card Enhanced Styles */
+.project-progress {
+    margin: 1rem 0;
+}
+
+.donate-project-btn {
+    display: block;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.donate-project-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* Donation Form Styles */
+.donate-form-section {
+    padding: 2rem 1rem;
+    background: #f9f9f9;
+    min-height: 100vh;
+}
+
+.donate-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.project-summary {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: fit-content;
+}
+
+.project-summary h1 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.project-info {
+    margin-top: 1rem;
+}
+
+.project-details {
+    margin-top: 1rem;
+}
+
+.donation-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.donation-form h2 {
+    color: #2c5aa0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #2c5aa0;
+}
+
+.amount-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.amount-btn {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.amount-btn:hover {
+    border-color: #2c5aa0;
+    background: #f0f8ff;
+}
+
+.amount-btn.selected {
+    background: #2c5aa0;
+    color: white;
+    border-color: #2c5aa0;
+}
+
+.checkbox-label {
+    display: flex !important;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal !important;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto !important;
+    margin-right: 0.5rem;
+}
+
+.donation-summary {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.donation-summary h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.summary-row.total {
+    border-top: 2px solid #ddd;
+    padding-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #2c5aa0;
+}
+
+.payment-methods h3 {
+    color: #2c5aa0;
+    margin-bottom: 1rem;
+}
+
+#paypal-button-container {
+    margin: 1rem 0;
+}
+
+.other-payments {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #eee;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.payment-btn {
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    background: #f5f5f5;
+    border-radius: 5px;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header p {
+        font-size: .8rem;
+    }
+    .nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #1e4080;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav ul.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+     .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    margin: 0;
+  }
+
+  .placeholder-img.large {
+    height: 250px; /* Reduce height on smaller screens */
+  }
+
+  .placeholder-img.large img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+
+    .donate-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .amount-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
 }

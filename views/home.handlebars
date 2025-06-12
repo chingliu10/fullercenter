@@ -5,7 +5,43 @@
     <div class="total-goal">
         <h2>Total Fundraising Goal</h2>
         <div class="amount">{{totalGoal}}</div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{totalPercentage}}%"></div>
+            </div>
+            <div class="progress-text">
+                <span style="color : black;">{{totalRaised}} raised of {{totalGoal}} ({{totalPercentage}}%)</span>
+            </div>
+        </div>
         <p>Help us reach our target to transform communities</p>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-container">
+        <h2>{{about.title}}</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>{{about.content}}</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <h3>40%</h3>
+                    <p>of Ugandans live on less than $2/day</p>
+                </div>
+                <div class="stat-card">
+                    <h3>50M</h3>
+                    <p>Population of Uganda</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Better</h3>
+                    <p>Educational outcomes with decent housing</p>
+                </div>
+            </div>
+        </div>
+        <div class="placeholder-img large">
+            <img src="{{about.image}}">
+        </div>
     </div>
 </section>
 
@@ -17,10 +53,23 @@
         <div class="project-card">
             <h3>{{this.title}}</h3>
             <div class="placeholder-img">
-                [Photo needed: {{this.image}}]
+                <img src="{{this.image}}">
             </div>
             <p>{{this.description}}</p>
-            <div class="goal-amount">Goal: {{this.goal}}</div>
+            
+            <div class="project-progress">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{this.percentage}}%"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>{{this.raisedFormatted}} of {{this.goalFormatted}} ({{this.percentage}}%)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="goal-amount">Goal: {{this.goalFormatted}}</div>
+            <a href="/donate/{{this.id}}" class="donate-project-btn">Donate to This Project</a>
         </div>
         {{/each}}
     </div>
@@ -30,18 +79,12 @@
     <h2>Make a Difference Today</h2>
     <p>Every dollar counts towards building better communities in Uganda</p>
     
-    <a href="#" class="donate-btn">Donate Now</a>
-    <a href="#" class="donate-btn">Monthly Giving</a>
-    
-    <div style="margin-top: 2rem;">
-        <p><strong>Other Ways to Give:</strong></p>
-        <p>Bank Transfer • Mobile Money • PayPal</p>
-    </div>
+    <a href="#projects" class="donate-btn">Donate Now</a>
 </section>
 
-{{!-- <section class="contact" id="contact">
+<section class="contact" id="contact">
     <h2>Get In Touch</h2>
     <p>Contact us to learn more about our projects or partnership opportunities</p>
-    <p><strong>Email:</strong> info@fullercenteruganda.org</p>
-    <p><strong>Phone:</strong> +256-XXX-XXXXX</p>
-</section> --}}
+    <p><strong>Email:</strong> chayakelvin2019@gmail.com</p>
+    <p><strong>Phone:</strong> +256 703 634456</p>
+</section>
