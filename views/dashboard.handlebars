@@ -1,0 +1,259 @@
+<!-- Dashboard Overview Cards -->
+<div class="dashboard-overview">
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-icon">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+                <h3>${{totalRaised}}</h3>
+                <p>Total Raised</p>
+                <span class="stat-change positive">+12% this month</span>
+            </div>
+        </div>
+
+        <div class="stat-card success">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{totalDonors}}</h3>
+                <p>Total Donors</p>
+                <span class="stat-change positive">+8 new this week</span>
+            </div>
+        </div>
+
+        <div class="stat-card warning">
+            <div class="stat-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="stat-info">
+                <h3>{{activeProjects}}</h3>
+                <p>Active Projects</p>
+                <span class="stat-change neutral">{{completedProjects}} completed</span>
+            </div>
+        </div>
+
+        <div class="stat-card info">
+            <div class="stat-icon">
+                <i class="fas fa-chart-bar"></i>
+            </div>
+            <div class="stat-info">
+                <h3>${{averageDonation}}</h3>
+                <p>Average Donation</p>
+                <span class="stat-change positive">+5% from last month</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="overall-progress">
+        <h3>Overall Campaign Progress</h3>
+        <div class="progress-info">
+            <span class="progress-text">${{totalRaised}} raised of ${{totalGoal}} goal</span>
+            <span class="progress-percentage">{{overallProgress}}%</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: {{overallProgress}}%"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Dashboard Content -->
+<div class="dashboard-content">
+    <!-- Projects Overview -->
+    <div class="dashboard-section">
+        <div class="section-header">
+            <h2><i class="fas fa-project-diagram"></i> Projects Overview</h2>
+            <a href="/admin/projects" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Project
+            </a>
+        </div>
+        
+        <div class="projects-grid">
+            {{#each projects}}
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="{{image}}" alt="{{title}}" onerror="this.src='/images/placeholder.jpg'">
+                    <div class="project-status {{status}}">{{status}}</div>
+                </div>
+                <div class="project-info">
+                    <h4>{{title}}</h4>
+                    <p>{{description}}</p>
+                    
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="label">Raised:</span>
+                            <span class="value">{{raisedFormatted}}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Goal:</span>
+                            <span class="value">{{goalFormatted}}</span>
+                        </div>
+                        <div class="stat">
+                            <span class="label">Donors:</span>
+                            <span class="value">{{donors}}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-progress">
+                        <div class="progress-bar small">
+                            <div class="progress-fill" style="width: {{percentage}}%"></div>
+                        </div>
+                        <span class="progress-text">{{percentage}}%</span>
+                    </div>
+                    
+                    <div class="project-actions">
+                        <button class="btn btn-sm btn-outline" onclick="editProject({{id}})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm btn-outline" onclick="viewProject({{id}})">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="dashboard-grid">
+        <!-- Recent Donations -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h3><i class="fas fa-hand-holding-usd"></i> Recent Donations</h3>
+                <a href="/admin/donations" class="view-all">View All</a>
+            </div>
+            
+            <div class="donations-list">
+                {{#each recentDonations}}
+                <div class="donation-item">
+                    <div class="donation-info">
+                        <div class="donor-name">{{donor}}</div>
+                        <div class="donation-project">{{project}}</div>
+                    </div>
+                    <div class="donation-details">
+                        <div class="amount">${{amount}}</div>
+                        <div class="date">{{date}} {{time}}</div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- Monthly Statistics -->
+        <div class="dashboard-section">
+            <div class="section-header">
+                <h3><i class="fas fa-chart-line"></i> Monthly Trends</h3>
+                <select class="period-selector">
+                    <option value="6months">Last 6 Months</option>
+                    <option value="12months">Last 12 Months</option>
+                </select>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="monthlyChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Impact Statistics -->
+    <div class="dashboard-section impact-section">
+        <div class="section-header">
+            <h2><i class="fas fa-heart"></i> Community Impact</h2>
+        </div>
+        
+        <div class="impact-stats">
+            <div class="impact-card">
+                <div class="impact-number">40%</div>
+                <div class="impact-label">of Ugandans live on less than $2/day</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">50M</div>
+                <div class="impact-label">Population of Uganda</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">Better</div>
+                <div class="impact-label">Educational outcomes with decent housing</div>
+            </div>
+            <div class="impact-card">
+                <div class="impact-number">{{totalDonors}}</div>
+                <div class="impact-label">Lives touched through donations</div>
+            </div>
+        </div>
+
+        <div class="mission-statement">
+            <h3>Our Mission</h3>
+            <p>To provide safe, decent, and affordable housing solutions that empower Ugandan families and strengthen communities through sustainable development projects.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Chart.js integration for monthly statistics
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('monthlyChart').getContext('2d');
+    
+    const monthlyData = {{{json monthlyStats}}};
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: monthlyData.map(stat => stat.month),
+            datasets: [{
+                label: 'Donations ($)',
+                data: monthlyData.map(stat => stat.donations),
+                borderColor: '#2c5aa0',
+                backgroundColor: 'rgba(44, 90, 160, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }, {
+                label: 'New Donors',
+                data: monthlyData.map(stat => stat.donors),
+                borderColor: '#28a745',
+                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                yAxisID: 'y1'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'left'
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    beginAtZero: true,
+                    grid: {
+                        drawOnChartArea: false,
+                    },
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        }
+    });
+});
+
+// Dashboard functions
+function editProject(id) {
+    window.location.href = '/admin/projects/edit/' + id;
+}
+
+function viewProject(id) {
+    window.location.href = '/donate/' + id;
+}
+</script>

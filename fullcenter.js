@@ -2,6 +2,7 @@ import express from 'express';
 import expressHandlebars from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import adminRoutes from './routes/admin.js'
 
 const { engine } = expressHandlebars;
 
@@ -19,6 +20,18 @@ app.engine('handlebars', engine({
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'views'));
 
+
+// Configure Handlebars with helpers
+app.engine('handlebars', engine({
+  defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  helpers: {
+    json: function(context) {
+      return JSON.stringify(context, null, 2); // Optional formatting
+    }
+  }
+}));
+
 // Serve static files
 // app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
+app.use("/admin", adminRoutes)
 
 // Routes
 app.get('/', (req, res) => {
@@ -189,12 +203,6 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/admin', (req, res) => {
-  res.render('signin', {
-    layout : false,
-    title: 'Signin - Fuller Center for Housing Uganda'
-  });
-});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
