@@ -189,6 +189,13 @@ app.get('/about', (req, res) => {
   });
 });
 
+app.get('/admin', (req, res) => {
+  res.render('signin', {
+    layout : false,
+    title: 'Signin - Fuller Center for Housing Uganda'
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
