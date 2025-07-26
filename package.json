@@ -2,11 +2,10 @@
   "name": "fullercenter",
   "version": "1.0.0",
   "description": "",
-  "main": "\"fullcenter.js\"",
+   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node fullcenter.js"
   },
   "author": "\"chingliu\"",
   "license": "ISC",
