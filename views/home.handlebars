@@ -41,9 +41,9 @@
         </div>
         <div class="about-image">
             <img src="{{about.image}}" alt="Fuller Center Uganda Family">
-            <div class="image-overlay">
+            {{!-- <div class="image-overlay">
                 <span class="overlay-text">Building Hope Together</span>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>
@@ -93,14 +93,10 @@
 
                 <div class="card-actions">
                     {{!-- Updated button text for clarity --}}
-                    {{!-- <button class="btn-secondary expand-btn" onclick="toggleExpanded({{this.id}})">
+                    <button class="expand-btn btn-secondary btn-sm flex items-center gap-1" onclick="toggleExpanded({{this.id}})">
                         <span class="btn-text">More Details</span>
                         <span class="btn-icon">↓</span>
-                    </button> --}}
-                    <a href="#" class="btn-details">
-                        <span class="btn-text">More Details</span>
-                        <span class="btn-icon">↓</span>
-                    </a>
+                    </button> 
                     <a href="/donate/{{this.id}}" class="btn-primary donate-btn">
                         <span class="btn-text">Donate Now</span>
                         <span class="btn-icon">❤️</span>
@@ -145,18 +141,18 @@
         <div class="donation-options">
             <div class="donation-card">
                 <h3>$25</h3>
-                <p>Builds 1 sq ft of home foundation</p>
-                <button class="btn-primary">Quick Donate</button>
+                <p>Builds 1 sq ft of home foundation</p><br/>
+                <a href="/donate/1" class="btn btn-primary">Quick Donate</a>
             </div>
             <div class="donation-card featured">
                 <h3>$100</h3>
                 <p>Provides building materials for 1 room</p>
-                <button class="btn-primary">Most Popular</button>
+                <a href="/donate/1" class="btn btn-primary">Most Popular</a>
             </div>
             <div class="donation-card">
                 <h3>$500</h3>
                 <p>Funds complete home construction</p>
-                <button class="btn-primary">Make Impact</button>
+                <a href="/donate/1" class="btn btn-primary">Make Impact</a>
             </div>
         </div>
         
@@ -237,7 +233,6 @@ body {
 
 /* Hero Section - Original Style */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 4rem 2rem;
     text-align: center;
@@ -254,12 +249,13 @@ body {
     font-size: 1.25rem;
     margin-bottom: 3rem;
     opacity: 0.9;
+    color: #333;
 }
 
 .total-goal {
-    background: rgba(255, 255, 255, 0.15);
+    background: #e8f4f8;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 3px solid #2c5aa0;
     border-radius: 20px;
     padding: 2rem;
     margin-top: 2rem;
@@ -363,7 +359,6 @@ body {
 }
 
 .stat-card {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;
     padding: 1.5rem;
     border-radius: 15px;
@@ -385,22 +380,23 @@ body {
 
 .about-image {
     position: relative;
-    border-radius: 20px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
 }
 
 .about-image img {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
+    height: 500px;
     transition: transform 0.3s ease;
+    width: 100%;
 }
 
+/*
 .about-image:hover img {
     transform: scale(1.1);
 }
+*/
 
+/*
 .image-overlay {
     position: absolute;
     bottom: 0;
@@ -413,6 +409,7 @@ body {
     transition: transform 0.3s ease;
 }
 
+
 .about-image:hover .image-overlay {
     transform: translateY(0);
 }
@@ -421,7 +418,7 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
 }
-
+*/
 
 /* Projects Section */
 
@@ -604,7 +601,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: baseline; /* Align text at baseline */
-    margin-bottom: 0.5rem;
     font-size: 0.95rem;
 }
 
@@ -617,6 +613,8 @@ body {
 .goal-amount {
     color: var(--text-secondary);
     font-weight: 500;
+    margin: 0;
+    padding: 0;
 }
 
 .progress-container {
@@ -730,7 +728,7 @@ body {
     /* If you added a flex-grow to .project-description, this will push it to the bottom */
 }
 
-.btn-primary{
+.btn-primary, .btn-secondary{
     border-radius: 50px;
     padding: 0.65rem 1.25rem; /* Slightly reduced padding */
     font-weight: 600;
@@ -745,21 +743,11 @@ body {
     font-size: 0.95rem; /* Slightly smaller font size for buttons */
 }
 
-.btn-details {
-        border-radius: 50px;
-    padding: 0.65rem 1.25rem; /* Slightly reduced padding */
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    flex: 1;
-    justify-content: center;
-    font-size: 0.95rem; 
-    border : 1px solid #1e40af;
+.btn-secondary {
+    height: 40px;
+    margin-top: 20px;
 }
+
 
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -874,7 +862,6 @@ body {
 
 /* Donate Section */
 .donate-section {
-    background: linear-gradient(135deg, #1f2937, #111827);
     color: white;
     padding: 5rem 2rem;
     text-align: center;
@@ -907,7 +894,6 @@ body {
 
 .donation-card.featured {
     transform: scale(1.05);
-    border-color: var(--accent-color);
     background: rgba(245, 158, 11, 0.2);
 }
 
@@ -919,7 +905,7 @@ body {
 .donation-card h3 {
     font-size: 2.5rem;
     font-weight: 900;
-    color: var(--accent-color);
+    color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
@@ -928,10 +914,15 @@ body {
     opacity: 0.9;
 }
 
+.donation-card button {
+    margin : 0px auto;
+}
+
 .donate-main-btn {
     margin-top: 2rem;
     font-size: 1.125rem;
     padding: 1rem 2rem;
+    color: whitesmoke;
 }
 
 /* Contact Section */
@@ -988,6 +979,16 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
+    .btn-secondary {
+        height: auto;
+        margin-top: 0;
+    }
+
+    .donate-btn {
+        margin: 0;
+    }
+
     .hero {
         padding: 3rem 1rem;
     }
