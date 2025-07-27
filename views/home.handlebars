@@ -1,7 +1,7 @@
 <section class="hero">
     <h1>Help Us Build a Better Uganda</h1>
     <p>Your donation will help us create sustainable housing solutions and community development projects across Uganda.</p>
-    
+         
     <div class="total-goal">
         <h2>Total Fundraising Goal</h2>
         <div class="amount">{{totalGoal}}</div>
@@ -10,7 +10,7 @@
                 <div class="progress-fill" style="width: {{totalPercentage}}%"></div>
             </div>
             <div class="progress-text">
-                <span style="color : black;">{{totalRaised}} raised of {{totalGoal}} ({{totalPercentage}}%)</span>
+                <span style="color: black;">{{totalRaised}} raised of {{totalGoal}} ({{totalPercentage}}%)</span>
             </div>
         </div>
         <p>Help us reach our target to transform communities</p>
@@ -19,72 +19,1180 @@
 
 <section class="about" id="about">
     <div class="about-container">
-        <h2>{{about.title}}</h2>
+        <h2 class="section-title">{{about.title}}</h2>
         <div class="about-content">
             <div class="about-text">
                 <p>{{about.content}}</p>
             </div>
             <div class="about-stats">
-                <div class="stat-card">
+                <div class="stat-card pulse-on-hover">
                     <h3>40%</h3>
                     <p>of Ugandans live on less than $2/day</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card pulse-on-hover">
                     <h3>50M</h3>
                     <p>Population of Uganda</p>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card pulse-on-hover">
                     <h3>Better</h3>
                     <p>Educational outcomes with decent housing</p>
                 </div>
             </div>
         </div>
-        <div class="placeholder-img large">
-            <img src="{{about.image}}">
+        <div class="about-image">
+            <img src="{{about.image}}" alt="Fuller Center Uganda Family">
+            <div class="image-overlay">
+                <span class="overlay-text">Building Hope Together</span>
+            </div>
         </div>
     </div>
 </section>
-
 <section class="projects" id="projects">
-    <h2>Our Current Projects</h2>
-    
-    <div class="project-grid">
+    <div class="projects-header">
+        <h2 class="section-title">Our Current Projects</h2>
+        <p class="section-subtitle">Each project is carefully designed to create sustainable impact while building homes for those in need</p>
+    </div>
+
+<div class="project-grid">
         {{#each projects}}
-        <div class="project-card">
-            <h3>{{this.title}}</h3>
-            <div class="placeholder-img">
-                <img src="{{this.image}}">
+        <div class="project-card modern-card" data-category="{{this.category}}" data-urgency="{{this.urgency}}">
+            <div class="card-header">
+                <div class="project-image">
+                    <img src="{{this.image}}" alt="{{this.title}}">
+                    <div class="urgency-badge urgency-{{this.urgency}}">{{this.urgency}} Priority</div>
+                    <div class="category-tag">{{this.category}}</div>
+                </div>
             </div>
-            <p>{{this.description}}</p>
-            
-            <div class="project-progress">
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: {{this.percentage}}%"></div>
+
+            <div class="card-content">
+                <h3 class="project-title">{{this.title}}</h3>
+                <p class="project-subtitle">{{this.subtitle}}</p>
+                <p class="project-description">{{this.shortDescription}}</p>
+
+                {{!-- This is the key change: Make the impact statement more prominent and concise --}}
+                <div class="project-progress">
+                    <div class="progress-header">
+                        <span class="raised-amount">{{this.raisedFormatted}}</span>
+                        <span class="goal-amount">Goal: {{this.goalFormatted}}</span>
                     </div>
-                    <div class="progress-text">
-                        <span>{{this.raisedFormatted}} of {{this.goalFormatted}} ({{this.percentage}}%)</span>
+                    <div class="progress-container">
+                        <div class="progress-fill" style="width: {{this.percentage}}%"></div>
+                        <div class="progress-percentage">{{this.percentage}}%</div> {{!-- Keep percentage visible --}}
+                    </div>
+                </div>
+
+                {{!-- Hide Key Impact Areas by default, they will be part of the expanded content or the full project page --}}
+                {{!-- <div class="key-points">
+                    <h4>Key Impact Areas:</h4>
+                    <ul>
+                        {{#each this.keyPoints}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </div> --}}
+
+                <div class="card-actions">
+                    {{!-- Updated button text for clarity --}}
+                    {{!-- <button class="btn-secondary expand-btn" onclick="toggleExpanded({{this.id}})">
+                        <span class="btn-text">More Details</span>
+                        <span class="btn-icon">↓</span>
+                    </button> --}}
+                    <a href="#" class="btn-details">
+                        <span class="btn-text">More Details</span>
+                        <span class="btn-icon">↓</span>
+                    </a>
+                    <a href="/donate/{{this.id}}" class="btn-primary donate-btn">
+                        <span class="btn-text">Donate Now</span>
+                        <span class="btn-icon">❤️</span>
+                    </a>
+                </div>
+
+                <div class="expanded-content" id="expanded-{{this.id}}">
+                    {{!-- Re-introduce Key Impact Areas here, inside the expanded content --}}
+                    <div class="key-points expanded-key-points">
+                        <h4>Key Impact Areas:</h4>
+                        <ul>
+                            {{#each this.keyPoints}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
+
+                    <div class="full-description">
+                        {{#each (split this.fullDescription '\n\n')}}
+                        <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+                    <div class="story-actions">
+                        {{!-- Changed to a dynamic link for the full project page --}}
+                        <a href="/project/{{this.id}}" class="btn-outline">View Full Project Page</a>
+                        <button class="btn-text-only collapse-btn" onclick="toggleExpanded({{this.id}})">
+                            Close Details ↑
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="goal-amount">Goal: {{this.goalFormatted}}</div>
-            <a href="/donate/{{this.id}}" class="donate-project-btn">Donate to This Project</a>
         </div>
         {{/each}}
     </div>
 </section>
 
 <section class="donate-section" id="donate">
-    <h2>Make a Difference Today</h2>
-    <p>Every dollar counts towards building better communities in Uganda</p>
-    
-    <a href="#projects" class="donate-btn">Donate Now</a>
+    <div class="donate-content">
+        <h2 class="section-title white-text">Make a Difference Today</h2>
+        <p class="section-subtitle white-text">Every dollar counts towards building better communities in Uganda</p>
+        
+        <div class="donation-options">
+            <div class="donation-card">
+                <h3>$25</h3>
+                <p>Builds 1 sq ft of home foundation</p>
+                <button class="btn-primary">Quick Donate</button>
+            </div>
+            <div class="donation-card featured">
+                <h3>$100</h3>
+                <p>Provides building materials for 1 room</p>
+                <button class="btn-primary">Most Popular</button>
+            </div>
+            <div class="donation-card">
+                <h3>$500</h3>
+                <p>Funds complete home construction</p>
+                <button class="btn-primary">Make Impact</button>
+            </div>
+        </div>
+        
+        <a href="#projects" class="btn-secondary donate-main-btn">Choose Your Project</a>
+    </div>
 </section>
 
 <section class="contact" id="contact">
-    <h2>Get In Touch</h2>
-    <p>Contact us to learn more about our projects or partnership opportunities</p>
-    <p><strong>Email:</strong> chayakelvin2019@gmail.com</p>
-    <p><strong>Phone:</strong> +256 703 634456</p>
+    <div class="contact-content">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Contact us to learn more about our projects or partnership opportunities</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-details">
+                    <strong>Email:</strong>
+                    <a href="mailto:chayakelvin2019@gmail.com">chayakelvin2019@gmail.com</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <div class="contact-details">
+                    <strong>Phone:</strong>
+                    <a href="tel:+256703634456">+256 703 634456</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
+<style>
+/* Enhanced CSS for compelling UI/UX */
+/* :root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #10b981;
+    --accent-color: #f59e0b;
+    --danger-color: #ef4444;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-light: #f8fafc;
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+} 
+*/
+:root {
+    --primary-color: #2563eb; /* Blue-600 */
+    --primary-dark: #1e40af;  /* Blue-800 */
+    --secondary-color: #f59e0b; /* Amber-500 */
+    --accent-color: #ef4444; /* Red-500 */
+    --text-primary: #1f2937; /* Gray-800 */
+    --text-secondary: #4b5563; /* Gray-600 */
+    --bg-light: #f9fafb; /* Gray-50 */
+    --bg-white: #ffffff;
+    --border-color: #e5e7eb; /* Gray-200 */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: var(--bg-light);
+}
+
+/* Hero Section - Original Style */
+.hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+}
+
+.total-goal {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.total-goal h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-container {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    height: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.progress-text {
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+.total-goal p {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+/* Sections */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* About Section */
+.about {
+    padding: 5rem 2rem;
+    background: var(--bg-white);
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin: 3rem 0;
+    align-items: center;
+}
+
+.about-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.about-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover .image-overlay {
+    transform: translateY(0);
+}
+
+.overlay-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+
+/* Projects Section */
+
+
+/* Projects Section */
+.projects {
+    padding: 5rem 2rem;
+    background: var(--bg-light);
+}
+
+.projects-header {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.project-grid {
+    display: grid;
+    /* Adjusted minmax to make it harder for 3 columns to fit, favoring 2 */
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); /* Consider 450px or 500px here */
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.modern-card {
+    background: var(--bg-white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.modern-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-color);
+}
+
+.card-header {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.project-image {
+    position: relative;
+    height: 100%;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.modern-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.urgency-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.urgency-High {
+    background: rgba(239, 68, 68, 0.9);
+    animation: pulse 2s infinite;
+}
+
+.urgency-Medium {
+    background: rgba(245, 158, 11, 0.9);
+}
+
+.urgency-Low {
+    background: rgba(16, 185, 129, 0.9);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.category-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(37, 99, 235, 0.9);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This helps push content apart */
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-subtitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex-grow: 1; 
+    /* Allow description to take available space */
+}
+
+/* Removed .project-impact styling as per your request,
+   but if you *do* want a single strong impact statement (recommended from previous discussion),
+   you should re-add a div for it here and style it simply,
+   like a bolded sentence above the progress bar.
+   For example, just add this back if you change your mind:
+.project-impact {
+    background: #e0f2fe;
+    border: 1px solid #90cdf4;
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+.impact-text::before {
+    content: '💡 ';
+    display: inline-block;
+    margin-right: 0.25rem;
+}
+*/
+
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; /* Align text at baseline */
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.raised-amount {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.125rem;
+}
+
+.goal-amount {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.progress-container {
+    background: var(--border-color);
+    border-radius: 50px;
+    height: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 50px;
+    transition: width 0.5s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Removed progress-bar class as it's redundant with progress-fill
+   if you want the shine, you'd place it directly into .progress-container */
+/* .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+} */
+
+.progress-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    filter: blur(5px);
+    animation: shine 2s infinite linear;
+    opacity: 0;
+    z-index: 2; /* Ensure shine is above fill */
+}
+
+@keyframes shine {
+    0% { left: -20%; opacity: 0; }
+    30% { opacity: 1; }
+    60% { left: 100%; opacity: 0; }
+    100% { left: 100%; opacity: 0; }
+}
+
+.progress-percentage {
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Ensure key-points are styled correctly only when expanded */
+.key-points {
+    display: none; /* Hidden by default when not expanded */
+    margin: 0; /* No default margin */
+    padding: 0; /* No default padding */
+}
+
+.expanded-content .key-points {
+    display: block; /* Show when expanded */
+    margin: 1.5rem 0; /* Add margin when inside expanded content */
+    background: var(--bg-light);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.key-points h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.key-points ul {
+    list-style: none;
+    padding: 0;
+}
+
+.key-points li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.key-points li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1rem;
+    top: 0;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.75rem; /* Reduced gap between buttons */
+    flex-shrink: 0;
+    padding-top: 0; /* No padding needed here, margin-top handles spacing */
+    /* If you added a flex-grow to .project-description, this will push it to the bottom */
+}
+
+.btn-primary{
+    border-radius: 50px;
+    padding: 0.65rem 1.25rem; /* Slightly reduced padding */
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex: 1;
+    justify-content: center;
+    font-size: 0.95rem; /* Slightly smaller font size for buttons */
+}
+
+.btn-details {
+        border-radius: 50px;
+    padding: 0.65rem 1.25rem; /* Slightly reduced padding */
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    flex: 1;
+    justify-content: center;
+    font-size: 0.95rem; 
+    border : 1px solid #1e40af;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(135deg, var(--primary-dark), #1e40af);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-text-only {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.btn-text-only:hover {
+    color: var(--primary-color);
+}
+
+.expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, padding-top 0.5s ease-in-out;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1.5rem;
+    padding-top: 0;
+}
+
+.expanded-content.show {
+    max-height: 1000px; /* Adjust as needed */
+    padding-top: 1.5rem;
+}
+
+.full-description {
+    margin-top: 1.5rem;
+}
+
+.full-description p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.story-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-actions {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Specific adjustment for when project-impact is removed */
+/* This ensures consistency if project-impact is truly gone */
+
+/* If you want the description to fill more vertical space
+   when project-impact is removed: */
+/* .project-description {
+    margin-bottom: 1.5rem;
+} */
+
+/* Donate Section */
+.donate-section {
+    background: linear-gradient(135deg, #1f2937, #111827);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.white-text {
+    color: white !important;
+}
+
+.donate-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.donation-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.donation-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.donation-card.featured {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+    background: rgba(245, 158, 11, 0.2);
+}
+
+.donation-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.donation-card h3 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.donation-card p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.donate-main-btn {
+    margin-top: 2rem;
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+}
+
+/* Contact Section */
+.contact {
+    padding: 5rem 2rem;
+    background: var(--bg-white);
+}
+
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.contact-icon {
+    font-size: 2rem;
+}
+
+.contact-details {
+    text-align: left;
+}
+
+.contact-details a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-details a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .amount {
+        font-size: 2rem;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .card-actions {
+        flex-direction: column;
+    }
+    
+    .donation-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .impact-stats {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .modern-card {
+        margin: 0 0.5rem;
+    }
+    
+    .goal-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .projects, .about, .donate-section, .contact {
+        padding: 3rem 1rem;
+    }
+}
+
+/* Animation Utilities */
+.pulse-on-hover {
+    animation: none;
+}
+
+.pulse-on-hover:hover {
+    animation: pulse 1s ease-in-out;
+}
+
+/* Loading states and micro-interactions */
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.modern-card {
+    will-change: transform;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .progress-shine,
+    .float {
+        animation: none;
+    }
+}
+
+/* Focus states for better accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-outline:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .modern-card {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .progress-bar {
+        border: 1px solid var(--text-primary);
+    }
+}
+</style>
+
+<script>
+function toggleExpanded(projectId) {
+    const expandedContent = document.getElementById(`expanded-${projectId}`);
+    const expandBtn = expandedContent.previousElementSibling.querySelector('.expand-btn');
+    const btnText = expandBtn.querySelector('.btn-text');
+    const btnIcon = expandBtn.querySelector('.btn-icon');
+    
+    if (expandedContent.classList.contains('show')) {
+        expandedContent.classList.remove('show');
+        btnText.textContent = 'Read Full Story';
+        btnIcon.textContent = '↓';
+        expandBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+        // Close all other expanded contents
+        document.querySelectorAll('.expanded-content.show').forEach(content => {
+            content.classList.remove('show');
+        });
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.querySelector('.btn-text').textContent = 'Read Full Story';
+            btn.querySelector('.btn-icon').textContent = '↓';
+        });
+        
+        expandedContent.classList.add('show');
+        btnText.textContent = 'Close Story';
+        btnIcon.textContent = '↑';
+        
+        // Smooth scroll to expanded content after animation
+        setTimeout(() => {
+            expandedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+    }
+}
+
+// Add loading states to donation buttons
+document.addEventListener('DOMContentLoaded', function() {
+    const donateButtons = document.querySelectorAll('.donate-btn, .btn-primary');
+    
+    donateButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (this.classList.contains('expand-btn')) return;
+            
+            const originalText = this.querySelector('.btn-text').textContent;
+            const btnText = this.querySelector('.btn-text');
+            
+            btnText.textContent = 'Processing...';
+            this.style.opacity = '0.7';
+            this.style.pointerEvents = 'none';
+            
+            // Reset after 2 seconds (remove this in production)
+            setTimeout(() => {
+                btnText.textContent = originalText;
+                this.style.opacity = '1';
+                this.style.pointerEvents = 'auto';
+            }, 2000);
+        });
+    });
+    
+    // Add intersection observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.modern-card, .stat-card, .donation-card').forEach(el => {
+        observer.observe(el);
+    });
+});
+
+// Add CSS for fade in animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .modern-card,
+    .stat-card,
+    .donation-card {
+        opacity: 0;
+    }
+`;
+document.head.appendChild(style);
+</script>
