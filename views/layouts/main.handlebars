@@ -5,6 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        #nav-menu {
+            display: none;
+        }
+        #nav-menu.show {
+            display: block;
+        }
+        
+        @media (min-width: 769px) {
+            #nav-menu {
+                display: flex !important;
+            }
+        }
+
+        footer {
+    background: #2c5aa0; /* Match your brand/nav color */
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+footer a {
+    color: #f59e0b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffcccb;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.85rem;
+        padding: 1.5rem 1rem;
+    }
+}
+
+    </style>
 </head>
 <body>
     <header class="header">
@@ -12,28 +57,29 @@
         <p>Building Hope, Creating Homes, Transforming Communities</p>
     </header>
     
-  <nav class="nav">
+    <nav class="nav">
         <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         <ul id="nav-menu">
             <li><a href="/">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#donate">Donate</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/#donate">Donate</a></li>
+            <li><a href="/#contact">Contact</a></li>
         </ul>
     </nav>
 
-    
     {{{body}}}
-    
-    <footer class="footer">
-        <p>&copy; 2025 Fuller Center for Housing Uganda. All rights reserved.</p>
-    </footer>
-    <script>
-function toggleMenu() {
-    document.getElementById('nav-menu').classList.toggle('show');
-}
-</script>
 
+<footer>
+    <p>&copy; 2025 Fuller Center for Housing Uganda. All rights reserved.</p>
+    <p>Crafted with ❤️ by <a href="https://chingliu.com" target="_blank">Chingliu</a> &amp; <a href="https://nextvision.co.tz" target="_blank">NextVision</a></p>
+</footer>
+
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('show');
+        }
+    </script>
 </body>
 </html>

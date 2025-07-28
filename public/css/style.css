@@ -10,6 +10,82 @@ body {
     color: #333;
 }
 
+/* Responsive Navigation Styles */
+.nav {
+    background: #1e4080;
+    padding: 0.5rem 1rem;
+    position: relative;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hamburger Menu Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: white;
+    position: absolute;
+    right: 1rem;
+    top: 0.7rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header p {
+        font-size: .8rem;
+    }
+    
+    .nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #1e4080;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        padding: 1rem;
+        gap: 1rem;
+        z-index: 1000;
+    }
+
+    .nav ul.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* ... rest of your mobile styles ... */
+}
+
 .header {
     background: linear-gradient(135deg, #2c5aa0, #1e4080);
     color: white;
@@ -201,11 +277,35 @@ body {
 }
 
 .footer {
-    background: #333;
+    background: #1e4080; /* Match your brand/nav color */
     color: white;
     text-align: center;
-    padding: 1rem;
+    padding: 2rem 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
+
+.footer a {
+    color: #f0f0f0;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #ffcccb;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        font-size: 0.85rem;
+        padding: 1.5rem 1rem;
+    }
+}
+
 
 .placeholder-img {
     background: #ddd;
