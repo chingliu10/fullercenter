@@ -1,7 +1,6 @@
 <section class="hero">
     <h1>Help Us Build a Better Uganda</h1>
-    <p>Your donation will help us create sustainable housing solutions and community development projects across Uganda.</p>
-         
+    <p>Your donation will help us create sustainable projects whose continuos revenue will be funding to complete home builds</p>
     <div class="total-goal">
         <h2>Total Fundraising Goal</h2>
         <div class="amount">{{totalGoal}}</div>
@@ -35,7 +34,7 @@
                 </div>
                 <div class="stat-card pulse-on-hover">
                     <h3>Better</h3>
-                    <p>Educational outcomes with decent housing</p>
+                    <p>Happy families in decent homes</p>
                 </div>
             </div>
         </div>
@@ -145,13 +144,13 @@
                 <a href="/donate/1" class="btn btn-primary">Quick Donate</a>
             </div>
             <div class="donation-card featured">
-                <h3>$100</h3>
-                <p>Provides building materials for 1 room</p>
+                <h3>$2000</h3>
+                <p>renovates/completes a home.</p><br/>
                 <a href="/donate/1" class="btn btn-primary">Most Popular</a>
             </div>
             <div class="donation-card">
-                <h3>$500</h3>
-                <p>Funds complete home construction</p>
+                <h3>$5000</h3>
+                <p>Helps to build a new home</p><br/>
                 <a href="/donate/1" class="btn btn-primary">Make Impact</a>
             </div>
         </div>
@@ -376,11 +375,19 @@ body {
 
 .about-image img {
     width: 100%;
-    height: 500px;
+    height: 520px;
     transition: transform 0.3s ease;
     width: 100%;
+    object-fit: cover;
+    object-position: top;
 }
 
+@media (max-width: 768px)  {
+    .about-image img {
+        object-fit: cover;
+        height: 350px;
+     }
+}
 /*
 .about-image:hover img {
     transform: scale(1.1);
