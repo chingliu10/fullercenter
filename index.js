@@ -366,7 +366,8 @@ Come, discover Uganda's beauty, and help build homes for those who need them mos
       'Showcase Uganda\'s breathtaking natural beauty',
       'Create cultural exchange opportunities',
       'Support sustainable tourism practices',
-      'Direct profits to home construction'
+      'Direct profits to home construction',
+      '$20,000 is gonna help us buy two tourism vehicles'
     ]
   }
 ];
