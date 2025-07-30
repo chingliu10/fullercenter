@@ -255,6 +255,35 @@ By supporting "Building Hope," you'll be part of a movement that combines busine
       'Create employment opportunities'
     ]
   },
+    {
+    id: 5,
+    title: 'Fuller Uganda Tours',
+    subtitle: 'Journey of Purpose: Explore Uganda, Build Homes',
+    shortDescription: 'Developing sustainable tourism opportunities that showcase Uganda while supporting our housing mission.',
+    fullDescription: `Imagine a journey that combines adventure, cultural immersion, and philanthropy. Our Tours and Travel initiative invites global guests to experience Uganda's breathtaking natural beauty while making a meaningful impact. We'll pick you up from the airport or hotel, drive you to stunning destinations, and take you on a unique journey, and your journey will contribute towards construction sites where homes for needy families are being built.
+
+As you explore Uganda's wonders, you'll contribute to a noble cause. Our profits will go directly towards constructing homes for those in need. Your journey will support local communities through sustainable tourism, provide a platform for cultural exchange and understanding, and fund home construction for underprivileged families.
+
+Join us on this journey of purpose, where every step takes you closer to making a difference. Invest in our Tours and Travel initiative and be part of a movement that brings people together while building a better future.
+
+Come, discover Uganda's beauty, and help build homes for those who need them most. Let's travel with purpose and create lasting impact together!`,
+    goal: 20000,
+    goalFormatted: '$20,000',
+    raised: 3500,
+    raisedFormatted: '$3,500',
+    percentage: 18,
+    image: '/images/tours.jpg',
+    impact: 'Each tour funds 1 complete home construction',
+    urgency: 'High',
+    category: 'Tourism',
+    keyPoints: [
+      'Showcase Uganda\'s breathtaking natural beauty',
+      'Create cultural exchange opportunities',
+      'Support sustainable tourism practices',
+      'Direct profits to home construction',
+      '$20,000 is gonna help us buy two tourism vehicles'
+    ]
+  },
   {
     id: 2,
     title: 'Fuller Dinner Program',
@@ -339,35 +368,6 @@ Join us in this venture, where sweat and dedication translate to tangible impact
       'Support community health and wellness',
       'Create sustainable revenue for housing',
       'Transform lives through fitness and purpose'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Fuller Uganda Tours',
-    subtitle: 'Journey of Purpose: Explore Uganda, Build Homes',
-    shortDescription: 'Developing sustainable tourism opportunities that showcase Uganda while supporting our housing mission.',
-    fullDescription: `Imagine a journey that combines adventure, cultural immersion, and philanthropy. Our Tours and Travel initiative invites global guests to experience Uganda's breathtaking natural beauty while making a meaningful impact. We'll pick you up from the airport or hotel, drive you to stunning destinations, and take you on a unique journey, and your journey will contribute towards construction sites where homes for needy families are being built.
-
-As you explore Uganda's wonders, you'll contribute to a noble cause. Our profits will go directly towards constructing homes for those in need. Your journey will support local communities through sustainable tourism, provide a platform for cultural exchange and understanding, and fund home construction for underprivileged families.
-
-Join us on this journey of purpose, where every step takes you closer to making a difference. Invest in our Tours and Travel initiative and be part of a movement that brings people together while building a better future.
-
-Come, discover Uganda's beauty, and help build homes for those who need them most. Let's travel with purpose and create lasting impact together!`,
-    goal: 20000,
-    goalFormatted: '$20,000',
-    raised: 3500,
-    raisedFormatted: '$3,500',
-    percentage: 18,
-    image: '/images/tours.jpg',
-    impact: 'Each tour funds 1 complete home construction',
-    urgency: 'High',
-    category: 'Tourism',
-    keyPoints: [
-      'Showcase Uganda\'s breathtaking natural beauty',
-      'Create cultural exchange opportunities',
-      'Support sustainable tourism practices',
-      'Direct profits to home construction',
-      '$20,000 is gonna help us buy two tourism vehicles'
     ]
   }
 ];
